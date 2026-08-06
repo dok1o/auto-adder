@@ -1,0 +1,3 @@
+#include "resource.h"
+
+IDR_PAYLOAD_ZIP RCDATA "..\\dist\\Auto-adder.zip"

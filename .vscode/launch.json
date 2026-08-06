@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Auto Adder Engine: doctor",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/engine/auto_adder_engine.py",
+      "args": ["doctor"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ]
+}

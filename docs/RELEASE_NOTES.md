@@ -1,4 +1,4 @@
-# Auto Adder 0.2
+# Auto Adder 0.3
 
 ## What's included
 
@@ -9,6 +9,7 @@
 - Windows app icon embedded into `AutoAdder.exe`.
 - Portable Python runtime included, so customers do not need to install Python.
 - One-file installer creates a desktop shortcut and opens the app.
+- Filled document copies are named with the surname from the ID/passport instead of `_filled`.
 
 ## Customer package
 
@@ -27,5 +28,5 @@ https://github.com/OWNER/REPOSITORY/releases/latest/download/AutoAdderSetup.exe
 ## SHA256
 
 ```text
-099B53D257F6F30AAAC5F97BBA5A6075A0A4C1BDDA5383ACF9060F2A50576B4D
+D31D5212110EB6336C61BC998B99808F66F9D39756E6E9E4472017C0E52CAC2D
 ```

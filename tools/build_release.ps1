@@ -1,5 +1,5 @@
 param(
-  [string]$Version = "0.2",
+  [string]$Version = "0.3",
   [string]$OutDir = "dist",
   [switch]$IncludePortablePython,
   [string]$PortablePythonSource = "$env:USERPROFILE\.cache\codex-runtimes\codex-primary-runtime\dependencies\python",
@@ -84,6 +84,9 @@ Get-ChildItem -LiteralPath $Stage -Recurse -File |
     $_.Name -like "*.pyc" -or
     $_.Name -like "*_backup.*" -or
     $_.Name -like "*_filled.*" -or
+    $_.Name -like "01_check_docx_*.*" -or
+    $_.Name -like "02_check_xlsx_*.*" -or
+    $_.Name -like "03_check_pptx_*.*" -or
     $_.Name -in @("fill_result.json", "extract_result.json", "fields.json")
   } |
   ForEach-Object { Remove-Item -LiteralPath $_.FullName -Force }

@@ -29,7 +29,7 @@ namespace {
 
 constexpr int kAppWidth = 1120;
 constexpr int kAppHeight = 740;
-constexpr const wchar_t* kAppVersion = L"Auto Adder 0.2";
+constexpr const wchar_t* kAppVersion = L"Auto Adder 0.3";
 
 constexpr int IDC_DOC_LIST = 1001;
 constexpr int IDC_ADD_DOCS = 1002;

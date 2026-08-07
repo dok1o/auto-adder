@@ -921,8 +921,26 @@ def fill_pptx(source: Path, destination: Path, mapping: dict[str, str]) -> int:
     return replacements
 
 
+def safe_filename_part(value: str, fallback: str = "filled") -> str:
+    cleaned = re.sub(r'[<>:"/\\|?*\x00-\x1f]', " ", value or "")
+    cleaned = re.sub(r"\s+", " ", cleaned).strip(" .")
+    return cleaned or fallback
+
+
+def filled_copy_suffix(mapping: dict[str, str]) -> str:
+    surname = (
+        mapping.get("\u0424\u0430\u043c\u0438\u043b\u0438\u044f")
+        or mapping.get("\u0424\u0430\u043c\u0438\u043b\u0438\u044f \u0440\u0430\u0431\u043e\u0442\u043d\u0438\u043a\u0430")
+        or ""
+    )
+    if not surname and mapping.get("\u0424\u0418\u041e"):
+        surname = mapping["\u0424\u0418\u041e"].split()[0]
+    return safe_filename_part(surname)
+
+
 def fill_documents(documents: list[Path], fields: list[dict[str, str]]) -> dict[str, Any]:
     mapping = alias_fields({item["name"]: item["value"] for item in fields if item.get("name") and item.get("value")})
+    copy_suffix = filled_copy_suffix(mapping)
     results = []
     for doc in documents:
         ext = doc.suffix.lower()
@@ -934,7 +952,7 @@ def fill_documents(documents: list[Path], fields: list[dict[str, str]]) -> dict[
         if not backup.exists():
             shutil.copy2(doc, backup)
 
-        temp_out = doc.with_name(doc.stem + "_filled" + doc.suffix)
+        temp_out = doc.with_name(doc.stem + "_" + copy_suffix + doc.suffix)
         try:
             if ext == ".docx":
                 count = fill_docx(doc, temp_out, mapping)

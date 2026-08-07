@@ -2,8 +2,8 @@ param(
   [Parameter(Mandatory = $true)]
   [string]$Repository,
 
-  [string]$Tag = "v0.2",
-  [string]$Title = "Auto Adder 0.2",
+  [string]$Tag = "v0.3",
+  [string]$Title = "Auto Adder 0.3",
   [string]$InstallerPath = "dist\AutoAdderSetup.exe"
 )
 

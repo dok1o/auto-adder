@@ -63,13 +63,13 @@ cpp\build\AutoAdder.exe
 ## Build Portable Zip
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File tools\build_release.ps1 -Version 0.2 -IncludePortablePython
+powershell -NoProfile -ExecutionPolicy Bypass -File tools\build_release.ps1 -Version 0.3 -IncludePortablePython
 ```
 
 Output:
 
 ```text
-dist\AutoAdder-0.2.zip
+dist\AutoAdder-0.3.zip
 ```
 
 ## Build Installer

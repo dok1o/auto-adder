@@ -30,8 +30,8 @@ Opening this link starts downloading the installer immediately.
 1. Open the repository on GitHub.
 2. Go to `Releases`.
 3. Click `Draft a new release`.
-4. Create a tag, for example `v0.2`.
-5. Set release title to `Auto Adder 0.2`.
+4. Create a tag, for example `v0.3`.
+5. Set release title to `Auto Adder 0.3`.
 6. Upload `dist\AutoAdderSetup.exe`.
 7. Publish the release.
 8. Send customers the direct download link from the section above.

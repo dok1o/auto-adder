@@ -9,7 +9,7 @@
 - Windows app icon embedded into `AutoAdder.exe`.
 - Portable Python runtime included, so customers do not need to install Python.
 - One-file installer creates a desktop shortcut and opens the app.
-- Filled document copies are named with the surname from the ID/passport instead of `_filled`.
+- Filled copies are created next to templates without creating `_backup` files or changing the source templates.
 
 ## Customer package
 

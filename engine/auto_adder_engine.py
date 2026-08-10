@@ -8,7 +8,6 @@ import csv
 import io
 import json
 import re
-import shutil
 import sys
 import zipfile
 from datetime import datetime
@@ -948,10 +947,6 @@ def fill_documents(documents: list[Path], fields: list[dict[str, str]]) -> dict[
             results.append({"path": str(doc), "ok": False, "error": "Пока поддерживается заполнение только DOCX, XLSX и PPTX"})
             continue
 
-        backup = doc.with_name(doc.stem + "_backup" + doc.suffix)
-        if not backup.exists():
-            shutil.copy2(doc, backup)
-
         temp_out = doc.with_name(doc.stem + "_" + copy_suffix + doc.suffix)
         try:
             if ext == ".docx":
@@ -960,8 +955,7 @@ def fill_documents(documents: list[Path], fields: list[dict[str, str]]) -> dict[
                 count = fill_xlsx(doc, temp_out, mapping)
             else:
                 count = fill_pptx(doc, temp_out, mapping)
-            shutil.copy2(temp_out, doc)
-            results.append({"path": str(doc), "ok": True, "replacements": count, "backup": str(backup), "filled_copy": str(temp_out)})
+            results.append({"path": str(doc), "ok": True, "replacements": count, "filled_copy": str(temp_out)})
         except Exception as exc:
             results.append({"path": str(doc), "ok": False, "error": str(exc)})
 

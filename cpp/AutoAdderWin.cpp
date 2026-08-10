@@ -1003,8 +1003,8 @@ void FillDocuments(HWND owner) {
     }
 
     AppendLog(summary);
-    SetStatus(L"Документы заполнены локально. Резервные копии сохранены с суффиксом _backup.");
-    MessageBoxW(owner, (summary + L"\n\nРезервные копии: *_backup.docx / *_backup.xlsx / *_backup.pptx").c_str(), L"Auto Adder", MB_ICONINFORMATION);
+    SetStatus(L"Заполненные копии созданы рядом с шаблонами.");
+    MessageBoxW(owner, summary.c_str(), L"Auto Adder", MB_ICONINFORMATION);
 }
 
 HWND CreateLabel(HWND parent, const wchar_t* text, int x, int y, int width, int height) {

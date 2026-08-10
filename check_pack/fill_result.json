@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "results": [
+    {
+      "path": "C:\\Users\\user\\Desktop\\Все проекты тут\\auto-adder\\check_pack\\01_check_docx.docx",
+      "ok": true,
+      "replacements": 1
+    },
+    {
+      "path": "C:\\Users\\user\\Desktop\\Все проекты тут\\auto-adder\\check_pack\\02_check_xlsx.xlsx",
+      "ok": true,
+      "replacements": 9
+    },
+    {
+      "path": "C:\\Users\\user\\Desktop\\Все проекты тут\\auto-adder\\check_pack\\03_check_pptx.pptx",
+      "ok": true,
+      "replacements": 0
+    }
+  ],
+  "filled": 3
+}

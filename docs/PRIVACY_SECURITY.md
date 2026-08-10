@@ -18,7 +18,7 @@ Auto Adder processes documents locally on the user's Windows PC. Identity docume
 Data stays in:
 
 - The documents selected by the user.
-- Backup copies created next to edited documents, such as `*_backup.docx`, `*_backup.xlsx`, and `*_backup.pptx`.
+- Filled copies created next to selected templates.
 - Temporary Windows files while processing PDFs or images.
 - The fields table visible inside the running app.
 

@@ -1,4 +1,4 @@
-# Auto Adder 0.3
+# Auto Adder 0.5
 
 ## What's included
 
@@ -10,6 +10,9 @@
 - Portable Python runtime included, so customers do not need to install Python.
 - One-file installer creates a desktop shortcut and opens the app.
 - Filled copies are created next to templates without creating `_backup` files or changing the source templates.
+- Added separate residence address and short employee name placeholders for contract templates.
+- Company requisites are no longer added as fill fields by default.
+- Registration and residence address fields stay empty after extraction for manual user entry.
 
 ## Customer package
 
@@ -28,5 +31,5 @@ https://github.com/OWNER/REPOSITORY/releases/latest/download/AutoAdderSetup.exe
 ## SHA256
 
 ```text
-D31D5212110EB6336C61BC998B99808F66F9D39756E6E9E4472017C0E52CAC2D
+2E883AA43597F6F82EE8C2A5852C4B87A2D6D5DF6A25E130ABDCD0FE4E3D107F
 ```

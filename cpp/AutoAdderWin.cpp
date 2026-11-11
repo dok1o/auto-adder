@@ -29,7 +29,7 @@ namespace {
 
 constexpr int kAppWidth = 1120;
 constexpr int kAppHeight = 740;
-constexpr const wchar_t* kAppVersion = L"Auto Adder 0.3";
+constexpr const wchar_t* kAppVersion = L"Auto Adder 0.5";
 
 constexpr int IDC_DOC_LIST = 1001;
 constexpr int IDC_ADD_DOCS = 1002;
@@ -833,8 +833,31 @@ void AddIfMissing(std::vector<FieldValue>& fields, const std::wstring& name, con
     }
 }
 
+void EnsureManualAddressFields(std::vector<FieldValue>& fields) {
+    const std::vector<std::wstring> manualAddressFields = {
+        L"Адрес регистрации",
+        L"Адрес проживания",
+        L"Адрес регистрации работника",
+        L"Адрес проживания работника",
+        L"Адрес физического лица",
+        L"Адрес постоянного места жительства",
+    };
+
+    for (const auto& name : manualAddressFields) {
+        auto found = std::find_if(fields.begin(), fields.end(), [&](const FieldValue& field) {
+            return field.name == name;
+        });
+        if (found == fields.end()) {
+            fields.push_back({name, L""});
+        } else {
+            found->value.clear();
+        }
+    }
+}
+
 void AddIdentityFields(std::vector<FieldValue>& fields, const std::wstring& path) {
     AddIfMissing(fields, L"ФИО", GuessPersonNameFromFile(path));
+    AddIfMissing(fields, L"ФИО кратко");
     AddIfMissing(fields, L"ИИН", FindFirstIinLikeNumber(FileNameOnly(path)));
     AddIfMissing(fields, L"Номер удостоверения/паспорта");
     AddIfMissing(fields, L"Дата рождения");
@@ -845,23 +868,22 @@ void AddIdentityFields(std::vector<FieldValue>& fields, const std::wstring& path
     AddIfMissing(fields, L"Срок действия");
     AddIfMissing(fields, L"Кем выдан");
     AddIfMissing(fields, L"Адрес регистрации");
+    AddIfMissing(fields, L"Адрес проживания");
 }
 
 void AddEmploymentContractFields(std::vector<FieldValue>& fields, const std::wstring& path) {
-    AddIfMissing(fields, L"Работодатель", L"ALT Sound+");
-    AddIfMissing(fields, L"БИН работодателя");
     AddIfMissing(fields, L"ФИО работника", GuessPersonNameFromFile(path));
+    AddIfMissing(fields, L"ФИО работника кратко");
     AddIfMissing(fields, L"ИИН работника", FindFirstIinLikeNumber(FileNameOnly(path)));
     AddIfMissing(fields, L"Номер удостоверения работника");
     AddIfMissing(fields, L"Дата выдачи удостоверения");
     AddIfMissing(fields, L"Адрес регистрации работника");
+    AddIfMissing(fields, L"Адрес проживания работника");
     AddIfMissing(fields, L"Дата договора", CurrentDateText());
     AddIfMissing(fields, L"Должность/роль работника");
 }
 
 void AddTaxDeductionFields(std::vector<FieldValue>& fields, const std::wstring& path) {
-    AddIfMissing(fields, L"Налоговый агент", L"ТОО \"ALT SOUND+\"");
-    AddIfMissing(fields, L"БИН налогового агента", L"090240020651");
     AddIfMissing(fields, L"ФИО физического лица", GuessPersonNameFromFile(path));
     AddIfMissing(fields, L"ИИН физического лица", FindFirstIinLikeNumber(FileNameOnly(path)));
     AddIfMissing(fields, L"Дата заявления", CurrentDateText());
@@ -968,6 +990,7 @@ void ExtractSampleData(HWND owner) {
     std::wstring errorText;
     if (EngineExtractFields(g_state.samplePath, ComboText(g_sampleKind), extracted, errorText)) {
         g_state.fields = extracted;
+        EnsureManualAddressFields(g_state.fields);
         RefreshFieldList();
         AppendLog(L"Данные извлечены локально. Проверьте поля перед заполнением документов.");
         SetStatus(L"Данные извлечены. Дважды щёлкните по значению, чтобы исправить.");
@@ -976,6 +999,7 @@ void ExtractSampleData(HWND owner) {
 
     AppendLog(L"Модуль извлечения: " + errorText);
     g_state.fields = ExtractFieldsLocally(g_state.samplePath, ComboText(g_sampleKind));
+    EnsureManualAddressFields(g_state.fields);
     RefreshFieldList();
     AppendLog(L"Использован резервный режим: заполните поля вручную и продолжайте.");
     MessageBoxW(owner, (errorText + L"\n\nПоля подготовлены вручную — проверьте и допишите значения.").c_str(), L"Auto Adder", MB_ICONWARNING);

@@ -1,5 +1,5 @@
 param(
-  [string]$Version = "0.3",
+  [string]$Version = "0.5",
   [string]$OutDir = "dist",
   [switch]$IncludePortablePython,
   [string]$PortablePythonSource = "$env:USERPROFILE\.cache\codex-runtimes\codex-primary-runtime\dependencies\python",

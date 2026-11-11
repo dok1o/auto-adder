@@ -1,4 +1,4 @@
-Auto Adder 0.3 Portable
+Auto Adder 0.5 Portable
 =======================
 
 What this package is
